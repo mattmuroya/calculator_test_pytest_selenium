@@ -1,7 +1,5 @@
 """Selenium WebDriver setup/cleanup fixtures. Pytest loads browser drivers from
 this module for reuse with individual test cases (dependency injection).
-
-This module can be expanded to include additional browser drivers.
 """
 
 import pytest
@@ -9,16 +7,27 @@ import selenium.webdriver
 
 # Chrome
 @pytest.fixture
-def chrome():
+def driver(request):
     """Defines setup and cleanup process for Chrome WebDriver instances.
     """
     # Setup phase (executes before the test case is run)
-    # Initializes, configures, and yields Chrome WebDriver instance
-    driver = selenium.webdriver.Chrome()
-    driver.implicitly_wait(10)
+
+    # Browser selected based on test case input parameters
+    if request.param == "Firefox":
+        driver = selenium.webdriver.Firefox()
+    elif request.param == "Edge":
+        driver = selenium.webdriver.Edge()
+    else: # Default to Chrome
+        driver = selenium.webdriver.Chrome()
+
+    # Configure driver options
+    driver.implicitly_wait(2)
     driver.maximize_window()
+
+    # Return Generator
     yield driver
 
     # Cleanup phase: (executes after the test case finishes)
-    # Quits Chrome WebDriver instance
+    
+    # Quit WebDriver instance
     driver.quit()
