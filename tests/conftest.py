@@ -7,7 +7,7 @@ import selenium.webdriver
 
 # Chrome
 @pytest.fixture
-def driver(request):
+def browser(request):
     """Defines setup and cleanup process for Chrome WebDriver instances.
     """
     # Setup phase (executes before the test case is run)
