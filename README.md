@@ -79,13 +79,13 @@ As your application/test suite grows, you can add new pages/classes and
 WebDriver calls/page interaction methods. These pages and their interaction
 methods will be called by individual test cases at execution time.
 
-## Tests
+### Tests
 
 The `tests` directory contains two types of files - your fixture configuration
 file `conftest.py`; and any number of test suite files such
 `test_calculator.py`, prefixed with `test_`.
 
-### conftest.py
+#### conftest.py
 
 Pytest supports a feature called _fixtures_ which are reusable functions used to
 feed objects, data, or some other resource dependencies into your tests cases.
@@ -102,7 +102,7 @@ phases:
 Additional fixtures can be added to `conftest.py` as needed for further test
 cases/suites.
 
-### test\<feature>.py
+#### test\<feature>.py
 
 The rest of the files in the `test` directory are your test suites that contain
 all your individual test cases. They must be prefixed with `test_` in order for
