@@ -42,8 +42,13 @@ class BasicCalculatorPage:
         calculate_button.click()
 
     def get_result(self):
+        """Reads and returns the value in the answer field.
         """
-        """
-        # Identify page elements
         answer = self._driver.find_element(By.ID, "numberAnswerField")
         return answer.get_attribute('value')
+    
+    def get_error_message(self):
+        """Reads and returns the in-app error message.
+        """
+        error = self._driver.find_element(By.ID, "errorMsgField")
+        return error.text

@@ -11,7 +11,6 @@ def driver(request):
     """Defines setup and cleanup process for Chrome WebDriver instances.
     """
     # Setup phase (executes before the test case is run)
-
     # Browser selected based on test case input parameters
     if request.param == "Firefox":
         driver = selenium.webdriver.Firefox()
@@ -21,13 +20,12 @@ def driver(request):
         driver = selenium.webdriver.Chrome()
 
     # Configure driver options
-    driver.implicitly_wait(2)
+    driver.implicitly_wait(10)
     driver.maximize_window()
 
     # Return Generator
     yield driver
 
     # Cleanup phase: (executes after the test case finishes)
-    
     # Quit WebDriver instance
     driver.quit()
